@@ -2,7 +2,7 @@
 
 var margin = {top: 0, right: 0, bottom: 0, left: 0},
     w = screen.width,
-    h = screen.height * .4;
+    h = window.innerHeight * .45;
 
 var n = [];
 var e = [];
@@ -53,7 +53,7 @@ for (var i = 0; i < all_dists.length; i ++) {
 // Create array holding arrays of pdf values for distributions
 function create_dists(n,e,l,p,g){
 
-    for (var i = .0000000001; i < 50; i += 0.03) {
+    for (var i = .000001; i < 50; i += 0.02) {
         for (var df = 1; df <= chiSquares.length; df ++) {
           chiSquares[df - 1].push( gamma_pdf(df, 1/2, df/2) );
         }

@@ -99,7 +99,7 @@ hr {
 }
 
 #myHeader {
-  height: 470px;
+  height: 50vh;
   width: 100%;
 	background-color: #002060;
 	padding-top: 0;
@@ -117,12 +117,14 @@ hr {
 
 .jumbo-icon {
   display: inline;
-  margin-right: .15vw;
+  padding: 0 .3vw 0 .3vw;
   color: white;
 }
 
 .jumbo-icon a:hover {
   text-decoration: none !important;
+  background-color: rgba(128, 128, 128, .3);
+  color: #002060;
 }
 
 /* From : http://bl.ocks.org/ilanman/10602996
