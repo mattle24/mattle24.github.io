@@ -8,11 +8,11 @@ html,body
 }
 
 h1 {
-  font-family: Rubik, sans-serif;
+  font-family: Rubik, Lato, 'Open Sans', sans-serif;
 }
 
 p, li, a {
-  font-family: 'Open Sans', sans-serif;
+  font-family: Lato, 'Open Sans', sans-serif;
 }
 
 body {
@@ -47,18 +47,25 @@ hr {
 
 .myNavTab a {
   text-decoration: none;
-  font-family: Rubik, 'Open Sans', sans-serif;
+  font-family: Lato, 'Open Sans', sans-serif;
   font-size: 1.5em;
   color: rgb(0, 32, 96);
 }
 
 .navbar {
 	background-color: #fff;
+  border: none;
+  border-radius: 0;
+  border-bottom: solid;
+  border-color: #01134d;
+  border-width: 0.15em;
 }
 
 .mypic {
   height:20vh;
   width: 20vh;
+  border: solid;
+  border-color: #01134d;
 }
 
 .affix ~ .container-fluid {
@@ -79,10 +86,10 @@ hr {
 }
 
 .tab-pane h2 {
-  color: #002060;
-  font-size: 3em;
-  font-family: Rubik, 'Open Sans', Helvetica;
-  margin-bottom: 3vh;
+  color: #01134d;
+  font-size: 2.5em;
+  font-family: Lato, 'Open Sans', Helvetica;
+  margin-bottom: 0.5vh;
 }
 
 .white {
@@ -101,7 +108,7 @@ hr {
 #myHeader {
   height: 50vh;
   width: 100%;
-	background-color: #002060;
+	background-color: #01134d;
 	padding-top: 0;
 	padding-bottom: 50vh;
 	margin: 0;
@@ -124,7 +131,7 @@ hr {
 .jumbo-icon a:hover {
   text-decoration: none !important;
   background-color: rgba(128, 128, 128, .3);
-  color: #002060;
+  color: #01134d;
 }
 
 /* From : http://bl.ocks.org/ilanman/10602996
