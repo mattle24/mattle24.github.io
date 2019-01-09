@@ -1,7 +1,7 @@
 // Adapted from http://bl.ocks.org/ilanman/10602996
 
 var margin = {top: 0, right: 0, bottom: 0, left: 0},
-    w = screen.width,
+    w = window.innerWidth,
     h = window.innerHeight * .45;
 
 var n = [];
@@ -64,7 +64,7 @@ function create_dists(n,e,l,p,g){
         g.push(gamma_pdf(i, 1/2, 5/2));
     }
 
-    // The mapping take each array of pdfs and return
+    // The mapping takes each array of pdfs and return
     // an array of tuples, where each tuple is the index position
     // and a pdf value
     norm = n.map(function(d,i) {
