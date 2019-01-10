@@ -106,11 +106,10 @@ hr {
 }
 
 #myHeader {
-  height: 50vh;
+  height: 46vh;
   width: 100%;
 	background-color: #01134d;
 	padding-top: 0;
-	padding-bottom: 50vh;
 	margin: 0;
 }
 
