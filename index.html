@@ -33,6 +33,10 @@
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="./index_files/ie10-viewport-bug-workaround.js.download"></script>
 
+  <!-- custom CSS from Rblogdown/ hugo -->
+  <link rel="stylesheet" href="/mattle24_blog/public/css/fonts.css" media="all">
+  <link rel="stylesheet" href="/mattle24_blog/public/css/main.css" media="all">
+
   <!-- Custom styles for this template -->
   <link href="style.css" rel="stylesheet">
 
@@ -71,6 +75,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar" >
         <ul class="nav navbar-nav">
+          <li class = 'myNavTab'><a data-toggle = 'tab' href="#blog">Blog</a></li>
           <li class = 'myNavTab'><a data-toggle = 'tab' href="#experience">Experience</a></li>
           <li class = 'myNavTab'><a data-toggle = 'tab' href="#projects">Projects</a></li>
           <li class = 'myNavTab active'><a data-toggle = 'tab' href="#about">About</a></li>
@@ -83,6 +88,14 @@
   <div class="container">
     <!-- Example row of columns -->
     <div class = 'tab-content'>
+
+      <div id = 'blog' class = 'tab-pane fade'> <!-- experience -->
+        <!-- timeline from: https://codepen.io/bsngr/pen/Ifvbi -->
+        <div class = 'page-header'>
+          <h2>Blog</h2>
+        </div>
+        <div id="blog-div"></div>
+      </div>
 
       <div id = 'experience' class = 'tab-pane fade'> <!-- experience -->
         <!-- timeline from: https://codepen.io/bsngr/pen/Ifvbi -->
@@ -174,5 +187,6 @@
   </div> <!-- /container -->
   <footer class = 'container'>
   </footer>
+  <script type="text/javascript" src = "include_blog_list.js"></script>
 </body>
 </html>
