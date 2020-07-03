@@ -1,0 +1,165 @@
+---
+title: "Matching Tracts to Cities using R"
+author: "Matt Lehman"
+date: 2019-02-12
+categories: ["R"]
+tags: ["sf", "spatial data", "us census", "tracts", "dissimilarity index", "r", "rstats", "data science"]
+---
+
+This blog post is focused on how to match data from US Census tracts to US Census Places (cities) without a crosswalk table. Matching tract data to places may be useful for a variety of reasons. Recently, I wanted to measure segregation in US cities for a research project. The most commonly used metric is the [dissimilarity index](https://www.census.gov/hhes/www/housing/resseg/pdf/app_b.pdf), which measures how much of the minority population would have to move neighborhoods in order for the overall metropolitan area to be evenely integrated.
+
+However, the dissimilarity index requires matching sub-geomtries (neighborhoods) to macro geometries (places). I could not find any crosswalk table to link Census tracts, accepted as proxies for neighborhoods ^[Massey, Douglas, and Nancy Denton. 1998. American Apartheid: Segregation and the Making of the Underclass. Cambridge, MA: Harvard University Press. [Google Scholar](https://scholar.google.com/scholar_lookup?hl=en&publication_year=1998&author=Douglas+Massey&author=Nancy+Denton&title=American+Apartheid%3A+Segregation+and+the+Making+of+the+Underclass)], to places in 1970. For a while, I wrote off the task as impratically difficult. 
+
+As is often the case, all it took was learning about the right package. The [`sf`](https://github.com/r-spatial/sf) package provided me with all of the tools I needed to match tracts to places. In my research, I use data from [IMPUS NHGIS](nhgis.org), which has been an invaluable resource. However, to keep this example easily accessible, I will instead use tract data from the American Community Survey via [`tidycensus`](https://github.com/walkerke/tidycensus) and place boundaries from [`tigris`](https://github.com/walkerke/tigris). Using `tidycensus` does require requesting a free API key from the US Census, which you can do [here](https://api.census.gov/data/key_signup.html). 
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warniing = FALSE, 
+                      results = "hide")
+```
+
+## Packages and setup
+
+```{r package}
+library(sf)
+library(ggplot2)
+library(dplyr)
+library(tidycensus)
+library(tigris)
+library(tidyr)
+```
+
+```{r, results='hide'}
+Sys.getenv("CENSUS_API_KEY") # load API key from .Renviron
+options(tigris_class = "sf")
+ggplot2::theme_set(theme_bw() + theme(rect = element_blank()))
+```
+
+## Obtain and munge data 
+
+```{r results='hide'}
+# get tract level ACS data with white and African American population
+ind_tracts <- tidycensus::get_acs(state = "IN", geography = "tract", 
+                  variables = c("B02001_002E", "B02001_003E"), geometry = TRUE)
+
+ind_places <- tigris::places("IN")
+```
+
+The tracts are in tidy format, with one row for variable `B02001_002E` (population white) and another row for `B02001_003E` (population black/ African American) but I wanted both variables in one row per tract. 
+
+```{r}
+ind_tracts <- ind_tracts %>% 
+  select(-moe) %>% 
+  spread(key = variable, value = estimate) %>% 
+  rename(white_pop = B02001_002, black_pop = B02001_003)
+```
+
+## Geo-analysis
+
+To simplify the example, I isolated one city to see how tracts and places match. Since my research is focused on Indianapolis, I used that as the example. To start, I mapped Indianapolis by itself to get a sense of what to expect.
+
+```{r}
+indianapolis <- ind_places %>% 
+  filter(NAME == "Indianapolis city (balance)")
+
+ggplot(indianapolis) +
+  geom_sf(color = "darkblue", fill = "skyblue") +
+  coord_sf(datum = NA) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(title = "Indianapolis")
+```
+
+Now, let's match the tracts. First, I tried `st_covers()` (a helpful [`sf` cheatsheet is available](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf) for these functions). 
+
+```{r st_covers}
+# get a matrix of one row with a logical column for each tract, TRUE if Indianapolis covers it
+covers_matrix <- st_covers(indianapolis, ind_tracts, sparse = FALSE)
+dim(covers_matrix)
+
+# map out the tracts with Indianapolis
+ggplot(indianapolis) +
+  geom_sf(color = "darkblue", fill = "skyblue") +
+  geom_sf(data = ind_tracts[t(covers_matrix), ], color = "yellow", fill = "yellow", alpha = 0.2) +
+  coord_sf(datum = NA)
+```
+
+`st_covers()` did an okay job, but I was missing all of the tracts with any area outside of Indianapolis. Next, I tried `st_intersects()`.
+
+```{r}
+# get a matrix of one row with a logical column for each tract, TRUE if it intersects Indianapolis
+intersects_matrix <- st_intersects(indianapolis, ind_tracts, sparse = FALSE)
+dim(intersects_matrix)
+
+# map out the tracts with Indianapolis
+ggplot(indianapolis) +
+  geom_sf(color = "darkblue", fill = "skyblue") +
+  geom_sf(data = ind_tracts[t(intersects_matrix), ], color = "yellow", fill = "yellow", alpha = 0.2) +
+  coord_sf(datum = NA)
+```
+
+`st_intersects()` was better, but still problematic. It picked up all of the tracts inside of Indianapolis, but also all of the tracts bordering Indianapolis. To rememedy this, I used `st_intersection()`. To simplify, I'm going to use the subset of the tracts defined by `st_intersects()` instead of the full `ind_tracts`.
+
+```{r}
+# get a matrix of one row with a logical column for each tract, TRUE if it intersects Indianapolis
+ind_tracts_intersection <- st_intersection(indianapolis, ind_tracts[t(intersects_matrix), ])
+
+# map out the tracts with Indianapolis
+ggplot(indianapolis) +
+  geom_sf(color = "darkblue", fill = "skyblue") +
+  geom_sf(data = ind_tracts_intersection, color = "yellow", fill = "yellow", alpha = 0.2) +
+  coord_sf(datum = NA)
+```
+
+Unlike the previous two functions, `st_intersection()` returns an `sf` object. The function seems to essentially trim the tracts to make sure they are within Indianapolis. However, the new `sf` object contains all of the tracts as the `sf` object indexed by `intersects_matrix`, including the ones that lo longer have any significant area.
+
+```{r, results=TRUE}
+nrow(ind_tracts_intersection) == nrow(ind_tracts[t(intersects_matrix), ])
+```
+
+My hacky solution was to look at the areas. In the trimmed `sf` object, the borderline tracts have area approximately 0% of their original area. I confirmed this by plotting the trimmed tracts with less than 1% of their original area.
+
+```{r}
+pcts <- as.numeric(st_area(ind_tracts_intersection)) / as.numeric(st_area(ind_tracts[t(intersects_matrix), ]))
+x <- pcts < 0.01
+
+ggplot(indianapolis) +
+  geom_sf(color = "darkblue", fill = "skyblue") +
+  geom_sf(data = ind_tracts[t(intersects_matrix), ][x, ], color = "yellow", fill = "yellow", alpha = 0.2) +
+  coord_sf(datum = NA) 
+```
+
+## Calculating the dissimilarity index 
+
+Using the percents as weights (or filtering out tracts with very small percentages), I could calculate the dissimilarity index. For Indianapolis, it does not matter if I filtered out < 1% or just used percents as weights. This analysis does have the assumption that tract population is evenly spread out among the tract, but do not think the assumption has much of an impact on the index since the weights of areas I did not want to include are so low.
+
+```{r, results=TRUE}
+# Calculate the disimilarity index (di) given a set of sub-geometries that match a macro-level geometry. 
+# Eg. all the tracts in a place.
+dissimilarity_index <- function(sub_geometry, majority_pop = white_pop, minority_pop = black_pop) {
+  majority_pop <- enquo(majority_pop)
+  minority_pop <- enquo(minority_pop)
+  st_geometry(sub_geometry) <- NULL # make it a df 
+  
+  sub_geometry %>%
+    mutate(
+      t =  !!majority_pop + !!minority_pop # pop in subgeometry
+      ,p = !!minority_pop / t # prop minority in tract
+    ) %>% 
+    summarise(
+      T. = sum(wt * t) # total pop in macro geometry
+      ,P. = sum(wt * !!minority_pop) / T. # prop minority in macro geometry
+      ,dissimilarity_index = sum(wt * t * abs(p - P.)) / (2 * T. * P. * (1 - P.))
+      ) %>% 
+    .$dissimilarity_index
+}
+
+ind_tracts_intersection$wt <- pcts
+dissimilarity_index(ind_tracts_intersection)
+
+ind_tracts_intersection$wt[ind_tracts_intersection$wt < 0.01] <- 0
+dissimilarity_index(ind_tracts_intersection)
+```
+
+

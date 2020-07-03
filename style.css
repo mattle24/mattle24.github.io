@@ -1,0 +1,160 @@
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+h1 {
+  font-family: Rubik, Lato, 'Open Sans', sans-serif;
+}
+
+p, li, a {
+  font-family: Lato, 'Open Sans', sans-serif;
+}
+
+body {
+  position: relative;
+}
+
+footer {
+  margin-top: 5vh;
+}
+
+hr {
+  border-top: 1px solid #eee;
+}
+
+.affix {
+  top: 0;
+  width: 100vw;
+  z-index: 9999 !important;
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+}
+
+.myNavTab a {
+  text-decoration: none;
+  font-family: Lato, 'Open Sans', sans-serif;
+  font-size: 1.5em;
+  color: rgb(0, 32, 96);
+}
+
+.navbar {
+	background-color: #fff;
+  border: none;
+  border-radius: 0;
+  border-bottom: solid;
+  border-color: #01134d;
+  border-width: 0.15em;
+}
+
+.mypic {
+  height:20vh;
+  width: 20vh;
+  border: solid;
+  border-color: #01134d;
+}
+
+.affix ~ .container-fluid {
+  position: relative;
+  top: 60vh;
+}
+
+.style-border {
+    display: block;
+    width: 24em;
+    height: 3px;
+    background: #fff;
+    margin: 1vh 0;
+}
+
+.tab-content p, .tabcontent li, .tabcontent ul {
+  font-size: 1.5em;
+}
+
+.tab-pane h2 {
+  color: #01134d;
+  font-size: 2.5em;
+  font-family: Lato, 'Open Sans', Helvetica;
+  margin-bottom: 0.5vh;
+}
+
+.white {
+  /* This styles the hamburger dropdown, 'white' is backwards compatible */
+  color: #000;
+  background-color: #000;
+}
+
+#graph {
+		width: 100vw;
+		height: inherit;
+		position: absolute;
+		z-index: 400;
+}
+
+#myHeader {
+  height: 46vh;
+  width: 100%;
+	background-color: #01134d;
+	padding-top: 0;
+	margin: 0;
+}
+
+#jumboText {
+  margin-left: 10vw;
+  margin-top:10vh;
+  color: #fff;
+	position: absolute;
+	z-index: 10000;
+}
+
+.jumbo-icon {
+  display: inline;
+  padding: 0 .3vw 0 .3vw;
+  color: white;
+}
+
+.jumbo-icon a:hover {
+  text-decoration: none !important;
+  background-color: rgba(128, 128, 128, .3);
+  color: #01134d;
+}
+
+/* From : http://bl.ocks.org/ilanman/10602996
+to draw probability distributions */
+.axis path,
+.axis line {
+ fill: none;
+ stroke: #000;
+ shape-rendering: crispEdges;
+}
+
+path {
+   stroke: black;
+   stroke-width: 2;
+   fill: none;
+}
+
+.line {
+ fill: none;
+ stroke-width: 2px;
+ opacity: 0.5;
+}
+
+.line:hover {
+ opacity: 1;
+}
+/* End of distribution styling */

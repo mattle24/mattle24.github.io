@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Blog</title>
+    <link>https://mattle24.github.io/mattle24_blog/public/tags/r/</link>
+    <description>Recent content in R on Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mattle24.github.io/mattle24_blog/public/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Matching Tracts to Cities using R</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/2019/02/12/matching-tracts-to-cities-using-r/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/2019/02/12/matching-tracts-to-cities-using-r/</guid>
+      <description>This blog post is focused on how to match data from US Census tracts to US Census Places (cities) without a crosswalk table. Matching tract data to places may be useful for a variety of reasons. Recently, I wanted to measure segregation in US cities for a research project. The most commonly used metric is the dissimilarity index, which measures how much of the minority population would have to move neighborhoods in order for the overall metropolitan area to be evenely integrated.</description>
+    </item>
+    
+  </channel>
+</rss>

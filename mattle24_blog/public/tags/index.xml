@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Blog</title>
+    <link>https://mattle24.github.io/mattle24_blog/public/tags/</link>
+    <description>Recent content in Tags on Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mattle24.github.io/mattle24_blog/public/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Science</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/tags/data-science/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/tags/data-science/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dissimilarity Index</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/tags/dissimilarity-index/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/tags/dissimilarity-index/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/tags/r/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rstats</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/tags/rstats/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/tags/rstats/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sf</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/tags/sf/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/tags/sf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spatial Data</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/tags/spatial-data/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/tags/spatial-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tracts</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/tags/tracts/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/tags/tracts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Us Census</title>
+      <link>https://mattle24.github.io/mattle24_blog/public/tags/us-census/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mattle24.github.io/mattle24_blog/public/tags/us-census/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
