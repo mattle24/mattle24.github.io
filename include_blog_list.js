@@ -12,6 +12,8 @@ xhr.onload = function() {
   body.querySelector("header.header").remove();
   // insert into `blog-div`
   document.getElementById("blog-div").innerHTML = body.innerHTML;
+  // remove previews because they look bad
+  document.querySelector("section.entry-content").remove();
 }
 
 xhr.send();

@@ -8,11 +8,11 @@ html,body
 }
 
 h1 {
-  font-family: Rubik, Lato, 'Open Sans', sans-serif;
+  font-family: Rubik, 'Open Sans', sans-serif;
 }
 
 p, li, a {
-  font-family: Lato, 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -47,25 +47,18 @@ hr {
 
 .myNavTab a {
   text-decoration: none;
-  font-family: Lato, 'Open Sans', sans-serif;
-  font-size: 1.5em;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
   color: rgb(0, 32, 96);
 }
 
 .navbar {
-	background-color: #fff;
+  background-color: #fff;
   border: none;
   border-radius: 0;
   border-bottom: solid;
   border-color: #01134d;
   border-width: 0.15em;
-}
-
-.mypic {
-  height:20vh;
-  width: 20vh;
-  border: solid;
-  border-color: #01134d;
 }
 
 .affix ~ .container-fluid {
@@ -82,13 +75,13 @@ hr {
 }
 
 .tab-content p, .tabcontent li, .tabcontent ul {
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .tab-pane h2 {
   color: #01134d;
-  font-size: 2.5em;
-  font-family: Lato, 'Open Sans', Helvetica;
+  font-size: 1.5em;
+  font-family: 'Open Sans', Helvetica;
   margin-bottom: 0.5vh;
 }
 
@@ -99,26 +92,26 @@ hr {
 }
 
 #graph {
-		width: 100vw;
-		height: inherit;
-		position: absolute;
-		z-index: 400;
+  width: 100vw;
+  height: inherit;
+  position: absolute;
+  z-index: 400;
 }
 
 #myHeader {
   height: 46vh;
   width: 100%;
-	background-color: #01134d;
-	padding-top: 0;
-	margin: 0;
+  background-color: #01134d;
+  padding-top: 0;
+  margin: 0;
 }
 
 #jumboText {
   margin-left: 10vw;
-  margin-top:10vh;
+  margin-top: 10vh;
   color: #fff;
-	position: absolute;
-	z-index: 10000;
+  position: absolute;
+  z-index: 10000;
 }
 
 .jumbo-icon {
@@ -129,8 +122,6 @@ hr {
 
 .jumbo-icon a:hover {
   text-decoration: none !important;
-  background-color: rgba(128, 128, 128, .3);
-  color: #01134d;
 }
 
 /* From : http://bl.ocks.org/ilanman/10602996
